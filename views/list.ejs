@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <link href="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>
+    <script src="js/ToDoList.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/ToDoList.css">
+    <title>Warehouse To-Do</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Warehouse To-Do List</h1>
+        <div id="list">
+            <div class="item">
+                <form>
+                    <%items.forEach(function(item){ %>
+                        <label><input name="checkbox-0 " type="checkbox" data-id="<%=item._id%> "><%=item.item %></label>
+                   <% }) %>
+                </form>
+            </div>
+        </div>
+        <div id = "inputForm">
+            <form action = "/list" method = "POST" >
+                    <label for="itemToAdd">Add an item here: </label>
+                    <input data-clear-btn="true" name="itemToAdd" id="itemToAdd" value="" type="text">
+                    <input value="Add Item" type="submit" id="inputItem">
+            </form>
+        </div>
+</body>

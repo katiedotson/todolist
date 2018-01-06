@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+    font-family: 'Lato', sans-serif;
+}
+
+#wrapper{
+    background-color: rgb(255, 255, 255);
+}
+
+#list{
+    background-color: aliceblue;
+    margin: auto;
+    overflow-x: hiden;
+}
+
+#inputForm{
+    margin: auto;
+    background-color: aliceblue;
+}
+
+form{
+    margin: auto;
+}
+h1{
+    text-align: center;
+}
