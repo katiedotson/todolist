@@ -3,14 +3,25 @@
 // const hostname = '127.0.0.1';
 const port = 3000;
 
-
+var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
 var mongojs = require('mongojs');
-var db = mongojs('todolist', ['items']);
+var mongodb = require('mongodb');
+var db = mongojs(uri, ['items']);
 var ObjectId = mongojs.ObjectId;
 var app = express();
+
+mongodb.MongoClient.connect(uri, function(err,db){
+    if(err){
+        throw err;
+        console.log(err);
+    }
+    else{
+        console.log("connected");
+    }
+});
 
 //View Engine
 app.set('view engine', 'ejs');
@@ -63,7 +74,7 @@ app.delete('/list/delete/:id', function (req, res) {
         });
 });
 
-app.listen(port, function(){
-    console.log('Server started on port ' + port);
+app.listen(process.env.port, function(){
+    console.log('Server started on port ' + process.env.port);
 });
 
