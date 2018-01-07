@@ -20,7 +20,7 @@
     "mongojs": "^2.4.1",
     "parser": "^0.1.4"
   },
-  "engines" : {
-    "node" : "8.9.3"
+  "engines": {
+    "node": "8.9.3"
   }
 }
