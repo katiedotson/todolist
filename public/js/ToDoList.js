@@ -18,9 +18,12 @@ function setSizes(){
 function registerUI(){
     //list item
     $("#list").on("click", ":checkbox", function(event, ui){
-        deleteItem(event.target);
         var itemClicked = event.target.parentElement;
-        $(itemClicked).fadeOut("slow");
+        var confirmation = confirm('Are you sure?');
+        if(confirmation){
+            $(itemClicked).fadeOut("slow");
+        }
+        deleteItem(event.target, confirmation);
         });
 
     //add item button
@@ -30,8 +33,7 @@ function registerUI(){
     });
 }
 
-function deleteItem(item){
-    var confirmation = confirm('Are you sure?');
+function deleteItem(item, confirmation){
     if(confirmation){
         $.ajax({
             type: 'delete',
