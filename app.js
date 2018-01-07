@@ -1,7 +1,7 @@
 // const http = require('http');
 // const fs = require('fs');s
 // const hostname = '127.0.0.1';
-const port = 3000;
+//const port = 3000;
 
 var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
 var express = require('express');
