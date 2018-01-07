@@ -3,7 +3,6 @@
 // const hostname = '127.0.0.1';
 //const port = 3000;
 
-var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -11,8 +10,24 @@ var mongojs = require('mongojs');
 var mongodb = require('mongodb');
 var db = mongojs(uri, ['items']);
 var ObjectId = mongojs.ObjectId;
+var cool = require('cool-ascii-faces');
 var app = express();
 
+app.set('port', (process.env.PORT || 5000));
+
+//View Engine
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+//Body parser middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+//set static path
+app.use(express.static(path.join(__dirname, 'public')));
+
+var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
+//Connect to Mongo Database via field 'uri'
 mongodb.MongoClient.connect(uri, function(err,db){
     if(err){
         throw err;
@@ -23,17 +38,15 @@ mongodb.MongoClient.connect(uri, function(err,db){
     }
 });
 
-//View Engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+// '/' redirects to /list, for now
+app.get('/', function(req, res){
+    res.redirect('/list');
+});
 
-//Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-//set static path
-app.use(express.static(path.join(__dirname, 'public')));
-
+// '/cool' === PUSH LOCAL CHANGES TEST -- Remove 
+app.get('/cool', function(req, res){
+    res.send(cool());
+});
 
 //LIST : post
 app.post('/list', function(req, res){
@@ -74,7 +87,7 @@ app.delete('/list/delete/:id', function (req, res) {
         });
 });
 
-app.listen(process.env.port, function(){
-    console.log('Server started on port ' + process.env.port);
+app.listen(app.get('port'), function(){
+    console.log('Server started on port ' + app.get('port'));
 });
 
