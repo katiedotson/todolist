@@ -3,6 +3,7 @@
 // const hostname = '127.0.0.1';
 //const port = 3000;
 
+var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
@@ -26,7 +27,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 //set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
-var uri = 'mongodb://techart:techart@ds245347.mlab.com:45347/heroku_9np9gjjq';
 //Connect to Mongo Database via field 'uri'
 mongodb.MongoClient.connect(uri, function(err,db){
     if(err){
